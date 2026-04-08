@@ -2,96 +2,84 @@
 
 ## Overview
 
-This project implements a customer segmentation pipeline using **K-Means clustering** to identify distinct groups of customers based on their attributes. The objective is to enable **data-driven marketing strategies and customer targeting**.
-
-The workflow includes data preprocessing, clustering, and model persistence for reuse.
+This project performs customer segmentation using **K-Means clustering** to group customers based on their attributes. The workflow includes exploratory analysis, model training, and clustering-based insights.
 
 ---
 
 ## Key Features
 
-* Unsupervised learning using K-Means clustering
-* Feature scaling for improved clustering performance
-* Modular project structure with separation of data, models, and code
-* Model persistence for reproducible results
+* K-Means clustering for unsupervised segmentation
+* Feature scaling using standardization
+* Model persistence using saved `.pkl` files
+* Separation of experimentation (notebook) and execution (script)
 
 ---
 
 ## Project Structure
 
-```
+```id="k2m9zt"
 .
 ├── data/
-│   └── customer_segmentation.csv     # Dataset
+│   └── customer_segmentation.csv
 │
-├── models/
-│   ├── kmeans.pkl                   # Trained clustering model
-│   └── scaler.pkl                   # Preprocessing scaler
+├── models/                        # Generated locally (not tracked)
+│   ├── kmeans.pkl
+│   └── scaler.pkl
 │
-├── customer_segmentation.ipynb      # EDA and experimentation
-├── segmentation.py                  # Main pipeline script
+├── customer_segmentation.ipynb   # Model training and analysis
+├── segmentation.py               # Uses saved models for segmentation
 ├── requirements.txt
 └── README.md
 ```
 
 ---
 
-## Dataset
+## Important Note
 
-The dataset contains customer-level features used for segmentation. These may include:
+The trained model (`kmeans.pkl`) and scaler (`scaler.pkl`) are **not included in the repository**.
 
-* Demographics (e.g., age)
-* Financial attributes (e.g., income)
-* Behavioral metrics (e.g., spending patterns)
+They must be generated before running the script.
+
+---
+
+## Setup & Usage
+
+### Step 1: Generate Models (Required)
+
+Run the Jupyter Notebook:
+
+```bash
+jupyter notebook customer_segmentation.ipynb
+```
+
+Execute all cells to generate:
+
+* `models/kmeans.pkl`
+* `models/scaler.pkl`
+
+---
+
+### Step 2: Run Segmentation Script
+
+```bash
+python segmentation.py
+```
 
 ---
 
 ## Methodology
 
-### 1. Data Preprocessing
+### Data Preprocessing
 
-* Handling missing values (if applicable)
-* Feature scaling using standardization (`scaler.pkl`)
+* Feature scaling using standardization
 
-### 2. Clustering
+### Clustering
 
-* Applied **K-Means algorithm**
-* Optimal number of clusters determined using:
+* K-Means algorithm applied
+* Number of clusters chosen using:
 
   * Elbow Method
-  * (Optional) Silhouette Score
-
-### 3. Model Persistence
-
-* Trained model saved as `models/kmeans.pkl`
-* Scaler saved as `models/scaler.pkl`
-
----
-
-## Installation
-
-Clone the repository:
-
-```
-git clone https://github.com/MainakJ99/customer-segmentation.git
-cd customer-segmentation
-```
-
-Install dependencies:
-
-```
-pip install -r requirements.txt
-```
-
----
-
-## Usage
-
-Run the segmentation pipeline:
-
-```
-python segmentation.py
-```
+  
 
 ---
 
@@ -100,9 +88,8 @@ python segmentation.py
 * Customers are grouped into distinct clusters
 * Each cluster represents a segment with similar characteristics
 
-(*Add cluster visualizations or metrics if available*)
-
 ---
+
 
 ## Author
 
