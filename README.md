@@ -1,96 +1,85 @@
-# Customer Segmentation using K-Means
+Customer Personality Analysis — Segmentation
 
-## Overview
+Customer segmentation project using K-Means, Hierarchical Clustering, and DBSCAN on the Customer Personality Analysis dataset.
 
-This project performs customer segmentation using **K-Means clustering** to group customers based on their attributes. The workflow includes exploratory analysis, model training, and clustering-based insights.
+Results
+Model	Clusters	Silhouette Score	Davies-Bouldin Index	Dunn Index
+K-Means	2	0.222	1.736	0.065
+Hierarchical	2	0.198	1.838	0.076
+DBSCAN	3	0.232	1.396	0.350
 
----
+Final model used: K-Means (k=2)
 
-## Key Features
-
-* K-Means clustering for unsupervised segmentation
-* Feature scaling using standardization
-* Model persistence using saved `.pkl` files
-* Separation of experimentation (notebook) and execution (script)
-
----
-
-## Project Structure
-
-```id="k2m9zt"
-.
+Customer Segments
+High-Engagement Premium Customers
+Higher income
+Higher spending
+More campaign acceptance
+More store and catalog purchases
+Budget-Conscious Family Customers
+Lower income
+Lower spending
+More children at home
+Higher web visits but lower conversion
+Folder Structure
+customer-segmentation/
+│
+├── app.py
+├── customer_segmentation.ipynb
+├── requirements.txt
+├── README.md
+│
 ├── data/
 │   └── customer_segmentation.csv
 │
-├── models/                        # Generated locally (not tracked)
-│   ├── kmeans.pkl
-│   └── scaler.pkl
+├── models/
+│   ├── scaler.pkl
+│   └── model_kmeans.pkl
 │
-├── customer_segmentation.ipynb   # Model training and analysis
-├── segmentation.py               # Uses saved models for segmentation
-├── requirements.txt
-└── README.md
-```
+└── plots/
+Setup
 
----
+Clone the repository:
 
-## Important Note
+git clone https://github.com/MainakJ99/customer-segmentation.git
+cd customer-segmentation
 
-The trained model (`kmeans.pkl`) and scaler (`scaler.pkl`) are **not included in the repository**.
+Create virtual environment:
 
-They must be generated before running the script.
+python -m venv env
 
----
+Activate environment:
 
-## Setup & Usage
+Windows
+env\Scripts\activate
+Mac/Linux
+source env/bin/activate
 
-### Step 1: Generate Models (Required)
+Install dependencies:
 
-Run the Jupyter Notebook:
-
-```bash
+pip install -r requirements.txt
+Run Notebook
 jupyter notebook customer_segmentation.ipynb
-```
+Run Streamlit App
+streamlit run app.py
 
-Execute all cells to generate:
+App runs on:
 
-* `models/kmeans.pkl`
-* `models/scaler.pkl`
+http://localhost:8501
+Tech Stack
+Python
+pandas
+numpy
+scikit-learn
+scipy
+matplotlib
+seaborn
+streamlit
+joblib
+Dataset
 
----
+Customer Personality Analysis Dataset from Kaggle.
 
-### Step 2: Run Segmentation Script
-
-```bash
-python segmentation.py
-```
-
----
-
-## Methodology
-
-### Data Preprocessing
-
-* Feature scaling using standardization
-
-### Clustering
-
-* K-Means algorithm applied
-* Number of clusters chosen using:
-
-  * Elbow Method
-  
-
----
-
-## Results
-
-* Customers are grouped into distinct clusters
-* Each cluster represents a segment with similar characteristics
-
----
-
-
-## Author
+Author
 
 Mainak Jana
